@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	data-th-replace="~{layouts/layout :: layout-projet(titrePage=~{:: title},
+					contenuPage=~{:: .center-main},
+					ressourcesSupp=~{})}">
+<head>
+<meta charset="UTF-8">
+<title data-th-text=#{sell.title}></title>
+</head>
+<body>
+	<main class="center-main">
+		<section class="center-section">
+
+		<h1 data-th-text=#{sell.title}></h1>
+		<h5 data-th-text=#{create.h5}></h5>
+
+			<form class="newVente" th:action="@{/nouvelle-vente}" method="post" th:object="${article}" id="form-vente">
+			
+				<div class="description">
+					<label data-th-text=#{sell.name}></label>
+					<input type="text" th:field="*{nom}" />
+
+					<label data-th-text=#{sell.prix}></label>
+					<input type="number" min="1" th:field="*{prixInitial}" />
+
+					<label data-th-text=#{sell.categorie}></label>
+					<select name="categorieId">
+						<option value="" data-th-text=#{sell.choose}></option>
+						<option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.libelle}"></option>
+					</select>
+
+					<label data-th-text=#{sell.start}></label>
+					<input type="date" th:field="*{dateDebutEncheres}" />
+
+					<label data-th-text=#{sell.description}></label>
+					<textarea th:field="*{description}" rows="5" cols="33"></textarea>
+
+					<label data-th-text=#{sell.end}></label>
+					<input type="date" th:field="*{dateFinEncheres}" />
+				</div>
+
+				<div class="retrait">
+					<label data-th-text=#{sell.retrait}></label>
+					<select name="adresseId">
+						<option value="" data-th-text=#{sell.choose}></option>
+						<option th:each="adr : ${adresses}" th:value="${adr.id}"
+							th:text="${adr.rue + ' ' + adr.codePostal + ' ' + adr.ville}"></option>
+					</select>
+				</div>
+
+			<div class="btn-vente">
+				<button type="submit" th:text="#{btn.next}"></button>
+				<button type="submit" th:text="#{btn.cancel.sell}"></button>
+				<a th:href="@{/}">
+					<button type="button" th:text="#{btn.cancel}"></button>
+				</a>
+			</div>
+			</form>
+
+		</section>
+	</main>
+</body>
+</html>

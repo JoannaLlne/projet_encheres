@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	data-th-replace="~{layouts/layout :: layout-projet(titrePage=~{:: title},
+					contenuPage=~{:: .center-main},
+					ressourcesSupp=~{})}">
+
+<head>
+<meta charset="UTF-8">
+<title data-th-text=#{login.title}></title>
+</head>
+<body>
+	<main class="center-main">
+		<section class="center-section">
+
+			<form th:action="@{/login}" method="post" class="form-connexion">
+				<input type="hidden" th:name="${_csrf.parameterName}"
+					th:value="${_csrf.token}" />
+
+				<div class="username">
+					<label data-th-text=#{login.username}></label> <input type="text"
+						name="username" />
+				</div>
+
+				<div class="pwd">
+					<label data-th-text=#{login.pwd}></label> <input type="password"
+						name="password" />
+				</div>
+
+				<div class="btn-connexion">
+					<div class="log">
+						<button data-th-text=#{btn.connect} type="submit"></button>
+						<a th:href="@{/pwd-editer}">
+							<button data-th-text=#{login.forget} type="button"></button>
+						</a>
+					</div>
+
+
+					<div class="create">
+						<!-- Redirige vers la page inscription -->
+						<a th:href="@{/inscription}">
+							<button data-th-text=#{btn.create.account} type="button"></button>
+						</a>
+					</div>
+				</div>
+			</form>
+		</section>
+	</main>
+</body>
+</html>

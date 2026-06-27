@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	data-th-replace="~{layouts/layout :: layout-projet(titrePage=~{:: title},
+					contenuPage=~{:: .center-main},
+					ressourcesSupp=~{})}">
+
+<head>
+<meta charset="UTF-8">
+<title>Détail vente</title>
+</head>
+<body>
+	<main class="center-main">
+		<section class="center-section">
+
+			<h1 data-th-text=#{view-detail.h1}></h1>
+
+
+			<div sec:authorize="isAuthenticated()" class="description" th:if="${estMaVente}">
+				<label data-th-text=#{view-detail.article}></label>
+				<input type="text" name="article" th:value="${enchere.nom}" disabled />
+
+				<label data-th-text=#{view-detail.prix}></label>
+				<input type="text" name="prixDepart" th:value="${enchere.prixInitial} + ' point(s)'" disabled />
+
+				<label data-th-text=#{view-detail.cat}></label>
+				<input type="text" th:value="${enchere.categorie?.libelle}" disabled />
+
+				<label data-th-text=#{view-detail.offre}></label>
+				<input type="text" name="offre" th:value="${enchere.prixVente}" disabled />
+
+				<label data-th-text=#{view-detail.desc}></label>
+				<textarea name="detail_article" rows="1" cols="40" disabled th:text="${enchere.description}"></textarea>
+
+				<label data-th-text=#{view-detail.end}></label>
+				<input type="text" name="fin" th:value="${#temporals.format(enchere.dateFinEncheres, 'dd/MM/yyyy')}" disabled />
+
+				<label data-th-text=#{view-detail.seller}></label>
+				<input type="text" name="vendeur" th:value="${enchere.vendeurs[0].pseudo}" disabled />
+
+
+				<!-- rajouter adresse retrait -->
+
+				<img th:if="${enchere.photo != null}" th:src="@{'/images/' + ${enchere.photo}}" alt="photo"
+					style="max-width: 150px;" />
+
+				<a th:href="@{/}">
+					<button type="button" th:text="#{btn.return}"></button>
+				</a>
+
+
+			</div>
+
+			<div sec:authorize="isAuthenticated()" class="description" th:unless="${estMaVente}">
+				<label data-th-text=#{view-detail.article}></label>
+				<input type="text" name="article" th:value="${enchere.nom}" disabled />
+
+				<label data-th-text=#{view-detail.prix}></label>
+				<input type="text" name="prixDepart" th:value="${enchere.prixInitial} + ' point(s)'" disabled />
+
+				<label data-th-text=#{view-detail.cat}></label>
+				<input type="text" th:value="${enchere.categorie?.libelle}" disabled />
+
+				<label data-th-text=#{view-detail.offre}></label>
+				<input type="text" name="offre" th:value="${enchere.prixVente}" disabled />
+
+				<label data-th-text=#{view-detail.desc}></label>
+				<textarea name="detail_article" rows="1" cols="40" disabled th:text="${enchere.description}"></textarea>
+
+				<label data-th-text=#{view-detail.end}></label>
+				<input type="text" name="fin" th:value="${#temporals.format(enchere.dateFinEncheres, 'dd/MM/yyyy')}" disabled />
+
+				<label data-th-text=#{view-detail.seller}></label>
+				<input type="text" name="vendeur" th:value="${enchere.vendeurs[0].pseudo}" disabled />
+
+
+				<!-- rajouter adresse retrait -->
+
+				<img th:if="${enchere.photo != null}" th:src="@{'/images/' + ${enchere.photo}}" alt="photo"
+					style="max-width: 150px;" />
+
+
+				<label data-th-text=#{vente.mon.enchere}></label>
+				<form th:action="@{/vente-detail}" method="post">
+					<input type="hidden" name="id" th:value="${enchere.id}" />
+					<input type="number" name="montant"
+						th:min="${(enchere.prixVente != null ? enchere.prixVente : enchere.prixInitial) + 1}" required />
+					<p th:if="${erreurEnchere}" th:text="${erreurEnchere}" style="color: red;"></p>
+					<button type="submit" th:text="#{btn.auction}"></button>
+				</form>
+				<a th:href="@{/}">
+					<button type="button" th:text="#{btn.return}"></button>
+				</a>
+
+			</div>
+
+
+			<div class="action"></div>
+		</section>
+	</main>
+</body>
+</html>

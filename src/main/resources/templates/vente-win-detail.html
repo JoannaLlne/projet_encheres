@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	data-th-replace="~{layouts/layout :: layout-projet(titrePage=~{:: title},
+					contenuPage=~{:: .center-main},
+					ressourcesSupp=~{})}">
+
+<head>
+<meta charset="UTF-8">
+<title data-th-text=#{sell.h1}></title>
+</head>
+<body>
+	<main class="center-main">
+		<section class="center-section">
+
+			<h1>*pseudo* a remporté la vente</h1>
+		
+
+			<div class="description">
+				<label data-th-text=#{view-detail.article}></label>
+				<input type="text" name="article" disabled />
+
+				<label data-th-text=#{view-detail.prix}></label>
+				<input type="text" name="prixDepart" disabled/>
+
+				<label data-th-text=#{view-detail.cat}></label>
+				<select id="categorie">
+					<option data-th-text=#{categorie.am} value="ameublement"></option>
+					<option data-th-text=#{categorie.inf} value="informatique"></option>
+					<option data-th-text=#{categorie.sport} value="sports_loisirs"></option>
+					<option data-th-text=#{categorie.vet} value="vetements"></option>
+				</select>
+
+				<label data-th-text=#{view-detail.offre}></label>
+				<input type="text" name="offre" disabled/>
+
+				<label data-th-text=#{view-detail.desc}></label>
+				<textarea type="text" name="detail_article" rows="5" cols="33" disabled></textarea>
+				
+				<label data-th-text=#{view-detail.end}></label>
+				<input type="date" name="fin" disabled />
+			</div>
+
+			<div class="retrait">
+				<label data-th-text=#{view-detail.retrait}></label>
+				<select id="point_retrait">
+					<option value="st_herblain">3 rue Mickaël Faraday 44800 SAINT HEBLAIN</option>
+					<option value="chartres_bretagne">2B rue Benjamin Franklin 35131 CHARTRES DE BRETAGNES</option>
+					<option value="quimper">2 rue Georges Perros 29000 QUIMPER</option>
+					<option value="niort">19 avenue Léo Lagrange 79000 NIORT</option>
+				</select>
+				
+				<label data-th-text=#{view-detail.seller}></label>
+				<input type="text" name="vendeur" disabled/>
+				<label data-th-text=#{detail.vendeur.phone}></label>
+				<input type="text" name="phone" disabled/>
+
+			</div>
+
+			
+			<div class="action">
+				
+				<button data-th-text=#{btn.collect.ok} type="submit"></button>
+				<button data-th-text=#{btn.return} type="submit"></button>
+				<img class="photo_article" src=""
+					alt="photo article" />
+				
+			</div>
+
+
+
+		</section>
+	</main>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	data-th-replace="~{layouts/layout :: layout-projet(titrePage=~{:: title},
+					contenuPage=~{:: .center-main},
+					ressourcesSupp=~{})}">
+ 
+<head>
+<meta charset="UTF-8">
+<title data-th-text=#{frag-entete.accueil}></title>
+
+</head>
+ 
+<body>
+	<main class="center-main">
+ 
+		<!-- Filtres -->
+		<div  th:replace="~{fragments/fragment-filtres :: filtres}"></div>
+ 
+ 
+	</main>
+</body>
+</html>

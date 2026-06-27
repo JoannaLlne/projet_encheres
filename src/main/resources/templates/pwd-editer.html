@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	data-th-replace="~{layouts/layout :: layout-projet(titrePage=~{:: title},
+					contenuPage=~{:: .center-main},
+					ressourcesSupp=~{})}">
+
+<head>
+<meta charset="UTF-8">
+<title data-th-text=#{pwd.title}></title>
+</head>
+<body>
+	<main class="center-main">
+		<section class="center-section">
+			<h1 data-th-text=#{pwd.h1}></h1>
+			<h5 data-th-text=#{create.h5}></h5>
+
+			<div class="pwd">
+				<label data-th-text=#{pwd.actual}></label>
+				<input type="password" name="current_pwd" />
+			</div>
+
+			<div>
+				<label data-th-text=#{pwd.new}></label>
+				<input type="password" name="new_pwd" />
+
+				<label data-th-text=#{pwd.confirm}></label>
+				<input type="password" name="pwd_confirm" />
+			</div>
+			
+				<button type="submit" th:text="#{btn.change}"></button>
+                <a data-th-href="@{/}"><button type="submit" th:text="#{btn.cancel}"></button></a>
+	
+		</section>
+	</main>
+</body>
+</html>

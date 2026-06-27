@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	data-th-replace="~{layouts/layout :: layout-projet(titrePage=~{:: title},
+					contenuPage=~{:: .center-main},
+					ressourcesSupp=~{:: #ressources-css})}">
+
+<head>
+<meta charset="UTF-8">
+<!-- Connexion comme titre de page -->
+<title>Inscription</title>
+<th:block id="ressources-css">
+	<link rel="stylesheet" data-th-href="@{/css/main.css}" />
+</th:block>
+</head>
+
+<body>
+	<main class="center-main">
+		<section class="center-section">
+
+			<h1 data-th-text=#{create.h1}></h1>
+			<h5 data-th-text=#{create.h5}></h5>
+
+			<form data-th-action="@{/inscription}" data-th-object="${utilisateur}" method="POST"
+				id="form-inscription">
+				<div class="formulaire">
+					<div class="infos">
+						<label data-th-text="#{profil.pseudo}"></label> <input type="text"
+							data-th-field="*{pseudo}" required/>
+					</div>
+
+					<div>
+						<label data-th-text="#{profil.nom}"></label> <input type="text"
+							data-th-field="*{nom}" required/>
+					</div>
+
+					<div>
+						<label data-th-text="#{profil.prenom}"></label> <input type="text"
+							data-th-field="*{prenom}" required/>
+					</div>
+
+					<div>
+						<label data-th-text="#{profil.email}"></label> <input type="email"
+							data-th-field="*{email}" required/>
+					</div>
+
+					<div>
+						<label data-th-text="#{profil.phone}"></label> <input type="text"
+							data-th-field="*{telephone}" />
+					</div>
+
+					<div class="adresse">
+					<label data-th-text=#{profil.address}></label>
+					<input type="text" data-th-field="*{adresse.rue}" placeholder="Rue" />
+					<input type="text" data-th-field="*{adresse.codePostal}" placeholder="Code Postal" />
+					<input type="text" data-th-field="*{adresse.ville}" placeholder="Ville" />
+					</div> 
+
+					<div>
+						<label data-th-text="#{create.pwd}"></label> <input
+							type="password" data-th-field="*{motDePasse}" id="pwd" required />
+					</div>
+
+					<div>
+						<label data-th-text="#{create.confirm}"></label> <input
+							type="password" id="confirm" required />
+							
+							<span id="passwordError" class="error"></span>
+							
+					</div>
+
+					<div class="btn-form">
+						<button type="submit" data-th-text="#{btn.create}" id="submitBtn"></button>
+						<a data-th-href="@{/}"><button type="button"
+								th:text="#{btn.cancel}"></button></a>
+					</div>
+
+				</div>
+			</form>
+		</section>
+	</main>
+
+
+ <script type="text/javascript">
+//PASSWORD VALIDATION
+ document.getElementById('form-inscription').addEventListener('input', function () {
+            validateForm();
+        });
+
+        function validateForm() {
+            const password = document.getElementById('pwd').value;
+            const confirmPassword = document.getElementById('confirm').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const errorElement = document.getElementById('passwordError');
+
+            let isValid = true;
+
+            if (password !== confirmPassword) {
+                errorElement.textContent = 'OK';
+                errorElement.classList.remove('success');
+                errorElement.classList.add('error');
+                isValid = false;
+                
+            } else {
+                errorElement.textContent = 'OK';
+                errorElement.classList.remove('error');
+                errorElement.classList.add('success');
+            }
+
+            if (isValid) {
+                submitBtn.classList.add('enabled');
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.classList.remove('enabled');
+                submitBtn.disabled = true;
+            }
+        }
+
+</script> 
+
+
+</body>
+</html>

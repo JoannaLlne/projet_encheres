@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	data-th-replace="~{layouts/layout :: layout-projet(titrePage=~{:: title},
+					contenuPage=~{:: .center-main},
+					ressourcesSupp=~{})}">
+
+
+<head>
+<meta charset="UTF-8">
+
+<title data-th-text=#{profil.h1}></title>
+
+</head>
+<body>
+
+	<main class="center-main">
+		<section class="center-section">
+			<h1 data-th-text="${utilisateur.pseudo}"></h1>
+			<h5 data-th-text=#{create.h5}></h5>
+
+			<div class="infos" th:if="${estMonProfil}">
+				<form th:action="@{/profil}" method="post"
+					th:object="${utilisateur}" id="form-profil">
+					<label data-th-text="#{profil.pseudo}"></label> <input type="text"
+						th:value="${utilisateur.pseudo}" disabled /> <label
+						data-th-text="#{profil.nom}"></label> <input type="text"
+						th:field="*{nom}" /> <label data-th-text="#{profil.prenom}"></label>
+					<input type="text" th:field="*{prenom}" /> <label
+						data-th-text="#{profil.email}"></label> <input type="text"
+						th:field="*{email}" /> <label data-th-text="#{profil.phone}"></label>
+					<input type="text" th:field="*{telephone}" /> <label
+						data-th-text="#{profil.address}"></label> <input type="text"
+						th:field="*{adresse.rue}" placeholder="Rue" /> <input type="text"
+						th:field="*{adresse.codePostal}" placeholder="Code postal" /> <input
+						type="text" th:field="*{adresse.ville}" placeholder="Ville" />
+
+					<p th:text="'Crédit : ' + ${utilisateur.credit}"></p>
+
+					<button type="submit" th:text="#{btn.change}"></button>
+
+					<div class="btn-profil">
+						<a th:href="@{/pwd-editer}">
+							<button type="button" th:text="#{btn.change.pwd}"></button>
+						</a>
+						<button type="button" th:text="#{btn.delete}"></button>
+						<a th:href="@{/}">
+							<button type="button" th:text="#{btn.cancel}"></button>
+						</a>
+					</div>
+				</form>
+			</div>
+
+			<div class="infos" th:unless="${estMonProfil}">
+				<p>
+					<span data-th-text="#{profil.pseudo}"></span> <span
+						th:text="${utilisateur.pseudo}"></span>
+				</p>
+				<p>
+					<span data-th-text="#{profil.nom}"></span> <span
+						th:text="${utilisateur.nom}"></span>
+				</p>
+				<p>
+					<span data-th-text="#{profil.prenom}"></span> <span
+						th:text="${utilisateur.prenom}"></span>
+				</p>
+				<p>
+					<span data-th-text="#{profil.email}"></span> <span
+						th:text="${utilisateur.email}"></span>
+				</p>
+				<p>
+					<span data-th-text="#{profil.phone}"></span> <span
+						th:text="${utilisateur.telephone}"></span>
+				</p>
+
+				<p>
+					<span data-th-text="#{profil.address}"></span> <span
+						th:text="${utilisateur.adresse.rue} + ', ' + ${utilisateur.adresse.codePostal} + ' ' + ${utilisateur.adresse.ville}"></span>
+				</p>
+
+				<p th:text="'Crédit : ' + ${utilisateur.credit}"></p>
+				<a th:href="@{/}">
+					<button type="button" th:text="#{btn.cancel}"></button>
+				</a>
+			</div>
+
+
+		</section>
+	</main>
+</body>
+</html>

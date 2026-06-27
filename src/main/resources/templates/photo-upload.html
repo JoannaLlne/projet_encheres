@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	data-th-replace="~{layouts/layout :: layout-projet(titrePage=~{:: title},
+					contenuPage=~{:: .center-main},
+					ressourcesSupp=~{})}">
+
+<head>
+<meta charset="UTF-8">
+<title data-th-text=#{photo.title}></title>
+</head>
+<script>
+document.getElementById('photo').addEventListener('change', function(e) {
+    var preview = document.getElementById('preview');
+    var file = e.target.files[0];
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+    }
+});
+</script>
+
+<body>
+    <main class="center-main">
+        <section class="center-section">
+
+            <h1 data-th-text=#{photo.h1}></h1>
+
+            <form th:action="@{/photo-upload}" method="post" 
+                  enctype="multipart/form-data">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input type="hidden" name="articleId" th:value="${articleId}" />
+
+                <div>
+                    <label data-th-text=#{photo.article} for="photo"></label>
+                    <input type="file" id="photo" name="photo" accept="image/*" />
+                    <img id="preview" class="photo_article" src="" alt="photo article" 
+                         style="display:none; max-width:200px;" />
+                </div>
+
+                <div class="save">
+                    <button type="submit" data-th-text=#{btn.picture}></button>
+                    <a th:href="@{/}"><button type="button" data-th-text=#{btn.cancel}></button></a>
+                </div>
+            </form>
+
+        </section>
+    </main>
+</body>
+</html>
