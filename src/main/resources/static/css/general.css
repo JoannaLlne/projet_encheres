@@ -1,0 +1,203 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+header {
+	
+	#ENI {
+	padding: 10px; 
+	
+	.logo-eni {
+	height: 18%;
+	}
+	
+	.eni {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: 600;
+	color: black;
+	padding: 0 10px;
+		}
+	} 
+}
+
+nav {
+	background-color: #b7beae;
+	height: 5vh;
+	padding: 20px;
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	justify-content: space-between; 
+	
+	#liens {
+	display : flex;
+	align-items: center;
+	justify-content: center;
+	
+	.btn-nav {
+	border : 1px solid black;
+	box-shadow: 1px 2px 9px black;
+	border-radius: 50px;
+	padding: 7px 17px;
+	margin: 0 10px;
+	text-decoration: none;
+	color: black;
+}
+
+.btn-deco {
+	background-color: #b7beae;
+	border: 1px solid black;
+	box-shadow: 1px 2px 9px black;
+	border-radius: 50px;
+	padding: 7px 17px;
+	margin-left: 4px;
+	cursor: pointer;
+	text-transform: uppercase;
+	font-size: 1rem;
+	font-weight: 680;
+}
+
+}
+#langue {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	
+	img {
+	margin : 0 10px;
+	height: 3vh;
+	width: auto;
+}
+
+}
+img {
+	width: 30px;
+	display: inline-flex;
+}
+
+span {
+	border: solid;
+	border-radius: 20px;
+}
+
+}
+#infos {
+	border: 1px solid black;
+	border-radius: 20px;
+	margin: 1em;
+	margin-left: 70%;
+	text-align: center;
+	background-color: #b7beae;
+	display : grid
+}
+
+#encheres{
+	background-color: #f2f2f2;
+	
+	h2{
+	text-align : center;
+	}
+	
+	legend{
+		font-weight : bold;
+		font-size : 150%;
+	}
+	
+}
+
+#liste-encheres {
+	
+	
+	
+	#article {
+	border:2px solid black;
+	border-radius: 20px;
+	margin: 1em 30%;
+	text-align: center;
+}
+
+img {
+	width: 80px;
+}
+}
+
+
+.infos{
+	
+	background-color: #f2f2f2;
+	max-width: 50vw;
+	margin: 30px auto;
+	font-size: 1.2rem;
+	border-radius: 10px;
+	
+	label, input{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 5px;
+	}
+	
+	button{
+	display: block;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 5px;
+	}
+}
+
+.newVente{
+	background-color: #f2f2f2;
+	max-width: 50vw;
+	margin: 30px auto;
+	font-size: 1.2rem;
+	border-radius: 10px;
+	
+	label, input, select, textarea{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 5px;
+	}
+	
+	button{
+	display: block;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 5px;
+	}
+}
+
+
+.center-section{
+	background-color: #f2f2f2;
+	max-width: 50vw;
+	margin: 30px auto;
+	font-size: 1.2rem;
+	border-radius: 10px;
+	
+	label, input, p{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 5px;
+	}
+	
+	button{
+	display: block;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 5px;
+	}
+}
+
+
+footer {
+	background-color: #b7beae;
+	height: 4vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
