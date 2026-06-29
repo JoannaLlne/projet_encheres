@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" data-th-fragment="layout-projet(titrePage, contenuPage, ressourcesSupp)">
+
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<!-- Rendre variable le titre de la page -->
+<title data-th-replace="${titrePage}" data-th-text="#{nom-application}"></title>
+
+<!-- Ajout de la CSS pour le layout -->
+<link rel="stylesheet" data-th-href="@{/css/general.css}">
+<link rel="stylesheet" data-th-href="@{/css/main.css}">
+
+<!-- Permettre d’ajouter ou non des ressources CSS -->
+<th:block data-th-replace="${ressourcesSupp} ?: ~{}"></th:block>
+
+<link rel="icon" data-th-href="@{/images/logoENI.png}" sizes="32x32">
+</head>
+<body>
+	<!-- Navbar -->
+	<div data-th-replace="~{fragments/fragment-navigation :: frag-nav}"></div>
+	
+	<!-- Intégration du fragment d'entête – avec le paramètre de la barre de navigation variable -->
+	<div data-th-replace="~{fragments/fragment-entete :: frag-entete}"></div>
+
+	<!-- Rendre variable le contenu de la page -->
+	<main data-th-replace="${contenuPage} ?: ~{}">Contenu de la page</main>
+
+	<!-- Intégration du fragment de pied page -->
+	<div data-th-replace="~{fragments/fragment-piedpage :: frag-piedpage}"></div>
+</body>
+</html>
