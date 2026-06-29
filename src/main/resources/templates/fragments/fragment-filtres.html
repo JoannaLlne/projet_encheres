@@ -1,0 +1,108 @@
+
+
+<section th:fragment="filtres" id="filtres" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+	<form th:action="@{/}" method="get">
+		<fieldset id="recherche-encheres">
+			<legend th:text="#{general-view.h2}"></legend>
+
+			<!-- Nom de l'article -->
+			<fieldset id="recherche">
+				<label data-th-text=#{article.search} for="nomArticle"></label>
+				<input type="text" id="nomArticle" name="nomArticle" th:value="${nomArticle}">
+
+				<!-- Catégorie -->
+				<label data-th-text=#{general-view.th.categorie} for="categorie"></label>
+				<select id="categorie" name="categorieId">
+					<option data-th-text=#{all.cat} value=""></option>
+					<option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.libelle}"
+						th:selected="${cat.id == categorieSelectionnee}"></option>
+				</select>
+
+				<button type="submit" th:text="#{btn.search}"></button>
+				<a th:href="@{/}">
+					<button type="button" th:text="#{btn.cancel}"></button>
+				</a>
+
+			</fieldset>
+
+			<!-- Filtres supplémentaires si connecté -->
+			<div sec:authorize="isAuthenticated()">
+
+				<!-- Achats -->
+				<fieldset id="filtres">
+					<label>
+						<input type="radio" id="radio-achats" name="typeFiltre" value="achats" th:checked="${typeFiltre == 'achats'}"
+							onchange="toggleFiltres('achats')">
+						<span th:text="#{general-view.th.achats}"></span>
+					</label>
+
+					<select id="encheres" name="statutAchat" th:disabled="${typeFiltre != 'achats'}">
+						<option value="ouvertes" th:selected="${statutAchat == 'ouvertes'}" th:text="#{enchere.open}"></option>
+						<option value="encours" th:selected="${statutAchat == 'encours'}" th:text="#{enchere.en.cours}"></option>
+						<option value="gagnees" th:selected="${statutAchat == 'gagnees'}" th:text="#{enchere.win}"></option>
+					</select>
+
+
+					<!-- Mes ventes -->
+
+					<label>
+
+						<input type="radio" id="radio-ventes" name="typeFiltre" value="ventes" th:checked="${typeFiltre == 'ventes'}"
+							onchange="toggleFiltres('ventes')">
+						<span th:text="#{general-view.th.ventes}"></span>
+					</label>
+
+					<select id="ventes" name="statutVente" th:disabled="${typeFiltre != 'ventes'}">
+						<option value="encours" th:selected="${statutVente == 'encours'}" th:text="#{vente.current}"></option>
+						<option value="nondebutees" th:selected="${statutVente == 'nondebutees'}" th:text="#{vente.no.start}"></option>
+						<option value="terminees" th:selected="${statutVente == 'terminees'}" th:text="#{vente.done}"></option>
+					</select>
+				</fieldset>
+
+			</div>
+
+			<script>
+				function toggleFiltres(type) {
+					document.getElementById('encheres').disabled = (type !== 'achats');
+					document.getElementById('ventes').disabled = (type !== 'ventes');
+				}
+			</script>
+
+			<!-- Liste des enchères -->
+			<div id="liste-encheres">
+				<h2 data-th-text=#{index.h1}></h2>
+
+
+				<article th:each="enchere : ${encheres}">
+					<div id="article">
+						<a sec:authorize="isAuthenticated()" th:href="@{/vente-detail(id=${enchere.id})}" th:text="${enchere.nom}"></a>
+						<span sec:authorize="isAnonymous()" th:text="${enchere.nom}"></span>
+						<p>
+							<span th:text="#{view-detail.offre}"></span>
+							<span th:text="${enchere.meilleureOffre} + ' point(s)'"></span>
+						</p>
+						<p>
+							<span th:text="#{view-detail.end}"></span>
+							<span th:text="${#temporals.format(enchere.dateFinEncheres, 'dd/MM/yyyy')}"></span>
+						</p>
+						<p>
+							<span th:text="#{view-detail.seller}"></span>
+							<a th:href="@{/profil(pseudo=${enchere.vendeurs[0].pseudo})}" th:text="${enchere.vendeurs[0].pseudo}"></a>
+						</p>
+
+						<img th:if="${enchere.photo != null}" th:src="@{'/images/' + ${enchere.photo}}" alt="photo"
+							style="max-width: 150px;" />
+					</div>
+				</article>
+
+
+
+
+			</div>
+		</fieldset>
+
+	</form>
+
+</section>

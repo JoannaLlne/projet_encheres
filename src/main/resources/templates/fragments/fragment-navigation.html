@@ -1,0 +1,36 @@
+<nav xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	th:fragment="frag-nav">
+	<div id="liens">
+
+		
+		
+		<a class="btn-nav" th:href="@{/}" th:text="#{frag-entete.accueil}"></a>
+
+		<!-- Si NON connecté -->
+		<a class="btn-nav" sec:authorize="!isAuthenticated()" th:href="@{/login}" th:text="#{frag-entete.login}"></a>
+
+		<!-- Si connecté -->
+
+
+
+		<a class="btn-nav" sec:authorize="isAuthenticated()" th:href="@{/vendre}" th:text="#{frag-entete.vendre}"></a>
+
+		<a class="btn-nav" sec:authorize="isAuthenticated()" th:href="@{/profil}" th:text="#{frag-entete.profil}"></a>
+
+		<!-- Déconnexion -->
+		<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="display: inline">
+			<button class="btn-deco" type="submit" th:text="#{frag-entete.deconnexion}"></button>
+		</form>
+	</div>
+
+	<!-- Langues -->
+	<div id="langue">
+		<a href="/?language=fr">
+			<img alt="Français" src="/images/French.webp">
+		</a>
+		<a href="/?language=en">
+			<img alt="English" src="/images/English.webp">
+		</a>
+	</div>
+
+</nav>

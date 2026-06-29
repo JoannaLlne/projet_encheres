@@ -1,0 +1,21 @@
+<header xmlns:th="http://www.thymeleaf.org" data-th-fragment="frag-entete">
+    <section id="nav-title">
+
+        <!-- Logo + nom appli -->
+	<div id="ENI">
+        <a data-th-href="@{/}">
+            <img data-th-src="@{/images/logoENI.png}" class="logo-eni">
+            <span data-th-text="#{nom-application}" class="eni"></span>
+        </a>
+	</div>
+
+
+        <!-- Date du jour et participant connecté -->
+        <article id="infos">
+        <label data-th-text="#{date.jour} + ${#temporals.format(#temporals.createNow(), 'dd/MM/yyyy')}"></label>
+        <a sec:authorize="isAuthenticated()">
+			<span th:text="'Participant : ' + ${#authentication.name}"></span>
+		</a>
+		</article>
+    </section>
+</header>
