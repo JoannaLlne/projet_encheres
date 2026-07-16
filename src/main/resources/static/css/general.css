@@ -4,7 +4,8 @@
 }
 
 body {
-	background: #cad2c5;
+	background: rgb(215, 222, 211);
+	height: 100vh;
 }
 
 header {
@@ -13,12 +14,16 @@ header {
 	padding: 10px; 
 	
 	.logo-eni {
-	height: 18%;
+	height: 11%;
 	}
+	
+	a {
+		text-decoration: none;
+		}
 	
 	.eni {
 	text-transform: uppercase;
-	letter-spacing: 2px;
+	letter-spacing: 1.6px;
 	font-weight: 600;
 	color: black;
 	padding: 0 10px;
@@ -111,10 +116,22 @@ span {
 #liste-encheres {
 		
 	#article {
-	border:2px solid black;
-	border-radius: 20px;
-	margin: 1em 30%;
+	border: 1.2px solid black;
+	border-radius: 2px;
+	width : 50%;
+	margin: 12px auto;
+	padding: 9px;
 	text-align: center;
+	
+	span {
+	font-weight: 450;
+	}
+	
+	a {
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+	}
 }
 
 img {
@@ -151,7 +168,7 @@ img {
 	font-size: 1.2rem;
 	border-radius: 10px;
 	
-	label, input, select, textarea{
+	label, input, select, textarea {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
