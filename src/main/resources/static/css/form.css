@@ -1,13 +1,13 @@
+
 .center-main {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding: 15px 0;
-	a
-	{
-	text-decoration
-	:
-	none;
+
+	
+	a {
+	text-decoration : none;
 }
 
 button {

@@ -6,6 +6,10 @@
 body {
 	background: rgb(215, 222, 211);
 	height: 100vh;
+	
+	main {
+	height: 70vh;
+	}
 }
 
 header {
