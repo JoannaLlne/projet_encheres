@@ -120,16 +120,13 @@ span {
 #liste-encheres {
 		
 	#article {
-	border: 1.2px solid black;
+	border: 1px solid black;
 	border-radius: 2px;
 	width : 50%;
 	margin: 12px auto;
 	padding: 9px;
 	text-align: center;
 	
-	span {
-	font-weight: 450;
-	}
 	
 	a {
 	color: black;
